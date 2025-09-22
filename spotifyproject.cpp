@@ -54,4 +54,136 @@ public:
         artistAlbums["billie eilish"] = {
             "When We All Fall Asleep, Where Do We Go?", "Happier Than Ever"};
     }
+    
+    //danish part
+
+ // Search for albums by artist name
+    std::vector<std::string> searchAlbums(const std::string &artistName)
+    {
+        std::string searchKey = toLower(artistName);
+
+        // Direct match
+        auto it = artistAlbums.find(searchKey);
+        if (it != artistAlbums.end())
+        {
+            return it->second;
+        }
+
+        // Partial match search
+        for (const auto &pair : artistAlbums)
+        {
+            if (pair.first.find(searchKey) != std::string::npos)
+            {
+                return pair.second;
+            }
+        }
+
+        // Return empty vector if no match found
+        return std::vector<std::string>();
+    }
+
+    // Display albums in formatted output
+    void displayAlbums(const std::string &artistName, const std::vector<std::string> &albums)
+    {
+        if (albums.empty())
+        {
+            std::cout << "No albums found for artist: " << artistName << std::endl;
+            std::cout << "Please check the spelling or try another artist." << std::endl;
+            return;
+        }
+
+        std::cout << "\n"
+                  << std::string(50, '=') << std::endl;
+        std::cout << "Albums by " << artistName << ":" << std::endl;
+        std::cout << std::string(50, '=') << std::endl;
+
+        for (size_t i = 0; i < albums.size(); ++i)
+        {
+            std::cout << (i + 1) << ". " << albums[i] << std::endl;
+        }
+
+        std::cout << "\nTotal albums found: " << albums.size() << std::endl;
+        std::cout << std::string(50, '=') << std::endl;
+    }
+
+    // Add new artist and albums (for extending the database)
+    void addArtist(const std::string &artistName, const std::vector<std::string> &albums)
+    {
+        std::string key = toLower(artistName);
+        artistAlbums[key] = albums;
+        std::cout << "Artist '" << artistName << "' added successfully!" << std::endl;
+    }
+
+    // List all available artists
+    void listAllArtists()
+    {
+        std::cout << "\nAvailable artists in database:" << std::endl;
+        std::cout << std::string(30, '-') << std::endl;
+
+        for (const auto &pair : artistAlbums)
+        {
+            std::cout << "• " << pair.first << " (" << pair.second.size() << " albums)" << std::endl;
+        }
+    }
+
+    // Interactive search function
+    void runInteractiveSearch()
+    {
+        std::string input;
+
+        while (true)
+        {
+            std::cout << "\n"
+                      << std::string(60, '*') << std::endl;
+            std::cout << "         SPOTIFY ALBUM SEARCH ASSISTANT" << std::endl;
+            std::cout << std::string(60, '*') << std::endl;
+            std::cout << "Options:" << std::endl;
+            std::cout << "1. Search for albums by artist name" << std::endl;
+            std::cout << "2. List all available artists" << std::endl;
+            std::cout << "3. Exit" << std::endl;
+            std::cout << "\nEnter your choice (1-3): ";
+
+            std::getline(std::cin, input);
+
+            if (input == "1")
+            {
+                std::cout << "\nEnter artist name: ";
+                std::string artistName;
+                std::getline(std::cin, artistName);
+
+                if (!artistName.empty())
+                {
+                    std::vector<std::string> albums = searchAlbums(artistName);
+                    displayAlbums(artistName, albums);
+                }
+                else
+                {
+                    std::cout << "Please enter a valid artist name." << std::endl;
+                }
+            }
+            else if (input == "2")
+            {
+                listAllArtists();
+            }
+            else if (input == "3")
+            {
+                std::cout << "Thank you for using Spotify Album Search Assistant!" << std::endl;
+                break;
+            }
+            else
+            {
+                std::cout << "Invalid choice. Please enter 1, 2, or 3." << std::endl;
+            }
+        }
+    }
 };
+
+int main()
+{
+    SpotifyAssistant assistant;
+
+    // Run the interactive search
+    assistant.runInteractiveSearch();
+
+    return 0;
+}
