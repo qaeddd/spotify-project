@@ -63,6 +63,10 @@ public:
             "My World 2.0", "Under the Mistletoe", "Believe", "Purpose",
             "Changes", "Justice", "Ghost Stories"};
 
+        artistAlbums["hujan"] = {
+            "Hiba", "Aku Scandal", "Pagi Yang Gelap", "Kotak Hati",
+            "Muda"};
+
         artistAlbums["sza"] = {
             "See.SZA.Run", "S", "Z", "Ctrl", "SOS"};
 
@@ -210,4 +214,5 @@ int main()
     SpotifyAssistant assistant;
     assistant.runInteractiveSearch();
     return 0;
+
 }
