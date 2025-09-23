@@ -53,6 +53,21 @@ public:
 
         artistAlbums["billie eilish"] = {
             "When We All Fall Asleep, Where Do We Go?", "Happier Than Ever"};
+
+        // New artists added
+        artistAlbums["travis scott"] = {
+            "Owl Pharaoh", "Days Before Rodeo", "Rodeo", "Birds in the Trap Sing McKnight",
+            "Astroworld", "Jackboys", "Utopia"};
+
+        artistAlbums["justin bieber"] = {
+            "My World 2.0", "Under the Mistletoe", "Believe", "Purpose",
+            "Changes", "Justice", "Ghost Stories"};
+
+        artistAlbums["sza"] = {
+            "See.SZA.Run", "S", "Z", "Ctrl", "SOS"};
+
+        artistAlbums["one direction"] = {
+            "Up All Night", "Take Me Home", "Midnight Memories", "Four", "Made in the A.M."};
     }
 
     // ====================
