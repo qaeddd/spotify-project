@@ -54,7 +54,7 @@ public:
         artistAlbums["billie eilish"] = {
             "When We All Fall Asleep, Where Do We Go?", "Happier Than Ever"};
     }
-// ====================
+    // ====================
     // Haiqal's Commit: Search and display functionality
     // ====================
 
@@ -115,5 +115,36 @@ public:
         artistAlbums[key] = albums;
         std::cout << "Artist '" << artistName << "' added successfully!" << std::endl;
     }
-},
 
+    // ====================
+    // Danish Commit: Artist listing, interactive menu, and main function
+    // ====================
+
+    // Lists all artists in the database with numbering and album count
+    void listAllArtists()
+    {
+        std::cout << "\nAvailable artists in database:" << std::endl;
+        std::cout << std::string(30, '-') << std::endl;
+
+        int idx = 1;
+        for (const auto &pair : artistAlbums)
+        {
+            std::cout << idx << ". " << pair.first << " (" << pair.second.size() << " albums)" << std::endl;
+            idx++;
+        }
+    }
+
+    // Runs the interactive menu for searching and listing artists/albums
+    void runInteractiveSearch()
+    {
+        std::string input;
+
+        while (true)
+        {
+            // Display menu
+            std::cout << "\n"
+                      << std::string(60, '*') << std::endl;
+            std::cout << "         SPOTIFY ALBUM SEARCH ASSISTANT" << std::endl;
+            std::cout << std::string(60, '*') << std::endl;
+        }
+        ,
