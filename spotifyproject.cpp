@@ -148,3 +148,11 @@ public:
             std::cout << std::string(60, '*') << std::endl;
         }
         ,
+
+// qaed commit : Main function added in final commit
+int main()
+{
+    SpotifyAssistant assistant;
+    assistant.runInteractiveSearch();
+    return 0;
+}
