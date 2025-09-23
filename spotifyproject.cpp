@@ -54,4 +54,66 @@ public:
         artistAlbums["billie eilish"] = {
             "When We All Fall Asleep, Where Do We Go?", "Happier Than Ever"};
     }
+// ====================
+    // Haiqal's Commit: Search and display functionality
+    // ====================
+
+    // Searches for albums by artist name (case-insensitive, supports partial match)
+    std::vector<std::string> searchAlbums(const std::string &artistName)
+    {
+        std::string searchKey = toLower(artistName);
+
+        // Direct match
+        auto it = artistAlbums.find(searchKey);
+        if (it != artistAlbums.end())
+        {
+            return it->second;
+        }
+
+        // Partial match search
+        for (const auto &pair : artistAlbums)
+        {
+            if (pair.first.find(searchKey) != std::string::npos)
+            {
+                return pair.second;
+            }
+        }
+
+        // Return empty vector if no match found
+        return std::vector<std::string>();
+    }
+
+    // Displays the albums of a given artist in a formatted way
+    void displayAlbums(const std::string &artistName, const std::vector<std::string> &albums)
+    {
+        if (albums.empty())
+        {
+            std::cout << "No albums found for artist: " << artistName << std::endl;
+            std::cout << "Please check the spelling or try another artist." << std::endl;
+            return;
+        }
+
+        std::cout << "\n"
+                  << std::string(50, '=') << std::endl;
+        std::cout << "Albums by " << artistName << ":" << std::endl;
+        std::cout << std::string(50, '=') << std::endl;
+
+        // List albums with numbering
+        for (size_t i = 0; i < albums.size(); ++i)
+        {
+            std::cout << (i + 1) << ". " << albums[i] << std::endl;
+        }
+
+        std::cout << "\nTotal albums found: " << albums.size() << std::endl;
+        std::cout << std::string(50, '=') << std::endl;
+    }
+
+    // Adds a new artist and their albums to the database
+    void addArtist(const std::string &artistName, const std::vector<std::string> &albums)
+    {
+        std::string key = toLower(artistName);
+        artistAlbums[key] = albums;
+        std::cout << "Artist '" << artistName << "' added successfully!" << std::endl;
+    }
 },
+
